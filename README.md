@@ -1,4 +1,6 @@
 # UPDater
+<img src="https://github.com/Renouncelove/UPDater/blob/main/Updater_icon.png" width="200" alt="UPDater App Icon">
+
 
 ## 简介 / Introduction
 
