@@ -1,8 +1,8 @@
-from qrLogin import qr_login
-from getDynamicReposts import fetch_latest_updates
-from getLastestVedios import get_latest_videos
+from UPDater.qrLogin import qr_login
+from UPDater.getDynamicReposts import fetch_latest_updates
+from UPDater.getLastestVedios import get_latest_videos
 from vedio import download_video_and_audio
-from get_bvid_cid import get_bvid_from_url, get_cid
+from UPDater.get_bvid_cid import get_bvid_from_url, get_cid
 import re
 
 # 设置您的cookie信息
