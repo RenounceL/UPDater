@@ -27,21 +27,23 @@ pip install -r requirements.txt
 
 This project is designed to be run directly through the `main.py` script, enabling the automatic fetching and downloading of the latest video updates from the Bilibili UPs you follow. Users simply need to modify the file path and cookie to get started.
 
-1. **配置 Cookie / Configure Cookie**:
-   首先，您需要在 `main.py` 文件中设置您的Bilibili cookie。这是必要的步骤，以确保能够访问您关注的UP主的内容。
+1. **配置 Cookie / Configure Cookie**:  
+   现在可以自动获取
+   
+   ~~首先，您需要在 `main.py` 文件中设置您的Bilibili cookie。这是必要的步骤，以确保能够访问您关注的UP主的内容。~~
 
-   First, you need to set your Bilibili cookie in the `main.py` file. This is a necessary step to ensure access to the content of the UPs you follow.
-
+   ~~First, you need to set your Bilibili cookie in the `main.py` file. This is a necessary step to ensure access to the content of the UPs you follow.~~
+   
    ```python
    # 在 main.py 中设置您的cookie
    cookie = 'YOUR_BILIBILI_COOKIE'
    ```
-2. **修改文件路径 / Modify File Paths:
+3. **修改文件路径 / Modify File Paths:  
    接下来，根据您的系统环境和需求，调整 main.py 中的文件路径设置。
 
    Next, adjust the file path settings in main.py according to your system environment and requirements.
    
-3. **运行脚本 / Run the Script:
+4. **运行脚本 / Run the Script:  
    完成上述配置后，您可以运行 main.py 脚本来启动整个程序。
 
    After completing the above configurations, you can run the main.py script to start the entire program.
