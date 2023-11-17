@@ -1,22 +1,33 @@
 import subprocess
 import requests
-import re
 from tqdm import tqdm
-import concurrent.futures
+import multiprocessing
+from multiprocessing import Manager
+import logging
 
-# 下载媒体（视频或音频）的函数
-def download_media(url, headers, save_path, media_type="Media", position=0):
+logging.basicConfig(level=logging.INFO, filename='Doc/UPdater.log', format='%(asctime)s - %(levelname)s - %(message)s')
+
+
+def download_media(url, headers, save_path, media_type="Media", position=0, lock=None):
+    logging.info(f"Starting download for {media_type}: {url}")
+    total_size_in_bytes = int(requests.head(url, headers=headers).headers.get('content-length', 0))
+    block_size = 1024 * 1024  # 1 Mebibyte
+
+    with lock:
+        progress_bar = tqdm(total=total_size_in_bytes, unit='iB', unit_scale=True, desc=f"Downloading {media_type}",
+                            position=position, leave=False)
+
     with requests.get(url, headers=headers, stream=True) as r:
-        total_size_in_bytes = int(r.headers.get('content-length', 0))
-        block_size = 1024  # 1 Kibibyte
-        progress_bar = tqdm(total=total_size_in_bytes, unit='iB', unit_scale=True, desc=f"Downloading {media_type}", position=position, colour='green')
         with open(save_path, 'wb') as file:
             for data in r.iter_content(block_size):
-                progress_bar.update(len(data))
+                with lock:
+                    progress_bar.update(len(data))
                 file.write(data)
         progress_bar.close()
 
-# 下载视频和音频的函数
+    logging.info(f"Download completed for {media_type}: {url}")
+
+
 def download_video_and_audio(bvid, cid, cookie, video_save_path, audio_save_path, merged_output_path):
     url = f'https://api.bilibili.com/x/player/playurl?fnval=16&cid={cid}&bvid={bvid}'
     headers = {
@@ -31,22 +42,31 @@ def download_video_and_audio(bvid, cid, cookie, video_save_path, audio_save_path
         video_url = data['data']['dash']['video'][0]['baseUrl']
         audio_url = data['data']['dash']['audio'][0]['baseUrl']
 
-        # 使用多线程同时下载视频和音频
-        with concurrent.futures.ThreadPoolExecutor() as executor:
-            future_video = executor.submit(download_media, video_url, headers, video_save_path, "Video", 0)
-            future_audio = executor.submit(download_media, audio_url, headers, audio_save_path, "Audio", 1)
+        # 使用 multiprocessing 来同时下载视频和音频
+        manager = Manager()
+        lock = manager.Lock()
+        processes = []
 
-        future_video.result()
-        future_audio.result()
+        video_process = multiprocessing.Process(target=download_media,
+                                                args=(video_url, headers, video_save_path, "Video", 0, lock))
+        audio_process = multiprocessing.Process(target=download_media,
+                                                args=(audio_url, headers, audio_save_path, "Audio", 1, lock))
 
-        print(f"视频和音频下载完成，已保存至 {video_save_path} 和 {audio_save_path}")
+        video_process.start()
+        audio_process.start()
+        processes.append(video_process)
+        processes.append(audio_process)
+
+        for process in processes:
+            process.join()
+
+        # 合并视频和音频
         merge_video_and_audio(video_save_path, audio_save_path, merged_output_path)
-        print(f"合并完成，文件保存为 {merged_output_path}")
     else:
         print("下载视频和音频错误：", response.status_code)
 
 
 def merge_video_and_audio(video_path, audio_path, output_path):
-    cmd = ['ffmpeg', '-i', video_path, '-i', audio_path, '-c:v', 'copy', '-c:a', 'aac', '-strict', 'experimental', output_path]
+    cmd = ['ffmpeg', '-i', video_path, '-i', audio_path, '-c:v', 'copy', '-c:a', 'aac', '-strict', 'experimental',
+           output_path]
     subprocess.run(cmd)
-

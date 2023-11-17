@@ -3,8 +3,12 @@
 import requests
 import qrcode
 import time
+import logging
+
+logging.basicConfig(level=logging.INFO, filename='Doc/UPdater.log', format='%(asctime)s - %(levelname)s - %(message)s')
 
 def qr_login():
+    logging.info("Starting QR login process")
     # 申请二维码
     response = requests.get("https://passport.bilibili.com/x/passport-login/web/qrcode/generate")
     data = response.json()['data']
@@ -14,6 +18,7 @@ def qr_login():
     # 生成二维码图片
     img = qrcode.make(qr_url)
     img.show()
+    logging.info("QR Code generated and displayed")
 
     # 初始化session
     session = requests.Session()
@@ -26,6 +31,7 @@ def qr_login():
         code = result['data']['code']
         if code == 0:  # 登录成功
             print("登录成功")
+            logging.info("QR login process completed")
             return session
         elif code in [86038, 86101]:  # 二维码失效或未扫描
             print("继续等待扫描...")

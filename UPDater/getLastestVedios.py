@@ -2,8 +2,13 @@
 
 import requests
 import time
+import logging
 from getWbi import encWbi, getWbiKeys
+
+logging.basicConfig(level=logging.INFO, filename='Doc/UPdater.log', format='%(asctime)s - %(levelname)s - %(message)s')
+
 def get_latest_videos(mid, session):
+    logging.info(f"Getting latest videos for MID: {mid}")
     img_key, sub_key = getWbiKeys()
 
     # 准备请求参数
@@ -17,12 +22,15 @@ def get_latest_videos(mid, session):
     url = 'https://api.bilibili.com/x/space/wbi/arc/search'
     response = session.get(url, params=signed_params, headers=headers)
 
-    print(f"Request URL: {url}")
-    print(f"Response status code: {response.status_code}")
+    # print(f"Request URL: {url}")
+    # print(f"Response status code: {response.status_code}")
     if response.status_code == 200:
+        logging.info("Successfully fetched latest videos")
         data = response.json()
-        print(f"API response: {data}")
+        # print(f"API response: {data}")
         if data['code'] == 0 and data['data']['list']['vlist']:
             return data['data']['list']['vlist'][0]
+    else:
+        logging.error(f"Failed to fetch videos. Status Code: {response.status_code}")
     return None
 
