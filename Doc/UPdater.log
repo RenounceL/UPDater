@@ -1,12 +1,1 @@
-2023-11-16 20:28:25,585 - INFO - Starting QR login process
-2023-11-16 20:28:26,700 - INFO - QR Code generated and displayed
-2023-11-16 20:28:37,459 - INFO - QR login process completed
-2023-11-16 20:28:37,460 - INFO - Fetching latest updates
-2023-11-16 20:28:38,081 - INFO - Successfully fetched latest updates
-2023-11-16 20:28:38,081 - INFO - Getting latest videos for MID: 11482657
-2023-11-16 20:28:39,122 - INFO - Successfully fetched latest videos
-2023-11-16 20:28:39,123 - INFO - Fetching CID for BVID: BV1wu4y1K7Q4
-2023-11-16 20:28:39,719 - INFO - Successfully fetched CID
-2023-11-16 20:28:40,440 - INFO - Starting download for Audio: https://upos-sz-mirroraliov.bilivideo.com/upgcxcode/29/71/1333847129/1333847129-1-30280.m4s?e=ig8euxZM2rNcNbdlhoNvNC8BqJIzNbfqXBvEqxTEto8BTrNvN0GvT90W5JZMkX_YN0MvXg8gNEV4NC8xNEV4N03eN0B5tZlqNxTEto8BTrNvNeZVuJ10Kj_g2UB02J0mN0B5tZlqNCNEto8BTrNvNC7MTX502C8f2jmMQJ6mqF2fka1mqx6gqj0eN0B599M=&uipk=5&nbs=1&deadline=1700195320&gen=playurlv2&os=aliovbv&oi=1661621907&trid=20144a22acaf46aab19c17185a7fe0c0u&mid=926164&platform=pc&upsig=79414190898e2d6b4c8569141a961b1f&uparams=e,uipk,nbs,deadline,gen,os,oi,trid,mid,platform&bvc=vod&nettype=0&orderid=0,1&buvid=&build=0&f=u_0_0&agrr=0&bw=18202&logo=80000000
-2023-11-16 20:28:40,441 - INFO - Starting download for Video: https://upos-sz-mirroraliov.bilivideo.com/upgcxcode/29/71/1333847129/1333847129-1-30112.m4s?e=ig8euxZM2rNcNbdlhoNvNC8BqJIzNbfqXBvEqxTEto8BTrNvN0GvT90W5JZMkX_YN0MvXg8gNEV4NC8xNEV4N03eN0B5tZlqNxTEto8BTrNvNeZVuJ10Kj_g2UB02J0mN0B5tZlqNCNEto8BTrNvNC7MTX502C8f2jmMQJ6mqF2fka1mqx6gqj0eN0B599M=&uipk=5&nbs=1&deadline=1700195320&gen=playurlv2&os=aliovbv&oi=1661621907&trid=20144a22acaf46aab19c17185a7fe0c0u&mid=926164&platform=pc&upsig=3c840490531a11f5228f50d540518519&uparams=e,uipk,nbs,deadline,gen,os,oi,trid,mid,platform&bvc=vod&nettype=0&orderid=0,1&buvid=&build=0&f=u_0_0&agrr=0&bw=382564&logo=80000000
-2023-11-16 20:29:35,746 - INFO - Download completed for Audio: https://upos-sz-mirroraliov.bilivideo.com/upgcxcode/29/71/1333847129/1333847129-1-30280.m4s?e=ig8euxZM2rNcNbdlhoNvNC8BqJIzNbfqXBvEqxTEto8BTrNvN0GvT90W5JZMkX_YN0MvXg8gNEV4NC8xNEV4N03eN0B5tZlqNxTEto8BTrNvNeZVuJ10Kj_g2UB02J0mN0B5tZlqNCNEto8BTrNvNC7MTX502C8f2jmMQJ6mqF2fka1mqx6gqj0eN0B599M=&uipk=5&nbs=1&deadline=1700195320&gen=playurlv2&os=aliovbv&oi=1661621907&trid=20144a22acaf46aab19c17185a7fe0c0u&mid=926164&platform=pc&upsig=79414190898e2d6b4c8569141a961b1f&uparams=e,uipk,nbs,deadline,gen,os,oi,trid,mid,platform&bvc=vod&nettype=0&orderid=0,1&buvid=&build=0&f=u_0_0&agrr=0&bw=18202&logo=80000000
+
